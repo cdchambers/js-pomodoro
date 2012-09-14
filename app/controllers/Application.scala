@@ -6,10 +6,13 @@ import play.api.data._
 import play.api.data.Forms._
 import models.Task
 
-object Application       extends Controller {
+object Application extends Controller {
 
   val taskForm = Form(
-    "label" -> nonEmptyText
+    tuple(
+      "label" -> nonEmptyText,
+      "estimate" -> number(min=1, max=5)    
+    )
   )
 
   def index = Action {
@@ -23,8 +26,8 @@ object Application       extends Controller {
   def newTask = Action { implicit request =>
     taskForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.index(Task.all(), formWithErrors)),
-      label => {
-        Task.create(label)
+      task => {
+        Task.create(task)
         Redirect(routes.Application.tasks)
       }
     )
