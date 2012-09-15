@@ -36,6 +36,11 @@ object Application extends Controller {
   def deleteTask(id: Long) = Action {
     Task.delete(id)
     Redirect(routes.Application.tasks)
+  } 
+
+  def completeTask(id: Long) = Action { 
+    Task.complete(id)
+    Redirect(routes.Application.tasks)
   }
 
 }

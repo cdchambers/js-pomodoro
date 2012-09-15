@@ -5,15 +5,16 @@ import anorm.SqlParser._
 import play.api.db._
 import play.api.Play.current
 
-case class Task(id: Long, label: String, estimate: Int)
+case class Task(id: Long, label: String, estimate: Int, done: Boolean)
 
 object Task {
 
   val task = {
     get[Long]("id") ~
     get[String]("label") ~
-    get[Int]("estimate") map {
-      case id~label~estimate => Task(id, label, estimate)
+    get[Int]("estimate") ~
+    get[Boolean]("done") map {
+      case id~label~estimate~done => Task(id, label, estimate, done)
     }
   }
 
@@ -35,6 +36,14 @@ object Task {
     DB.withConnection { implicit c =>
       SQL("delete from task where id = {id}").on(
         'id -> id
+      ).executeUpdate()
+    }
+  }
+
+  def complete(id: Long) { 
+    DB.withConnection { implicit c =>
+      SQL("update task set done = true where id = {id}").on(
+	'id -> id
       ).executeUpdate()
     }
   }
