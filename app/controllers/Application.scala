@@ -11,7 +11,7 @@ object Application extends Controller {
   val taskForm = Form(
     tuple(
       "label" -> nonEmptyText,
-      "estimate" -> number(min=1, max=5)    
+      "estimate" -> number(min=0, max=5)    
     )
   )
 
