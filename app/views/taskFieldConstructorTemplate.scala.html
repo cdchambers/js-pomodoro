@@ -1,0 +1,12 @@
+@(elements: helper.FieldElements) 
+
+
+<div class="field">
+  <label for="@elements.id">@elements.label
+    <span class="help">@elements.args('help)</span>
+  </label>
+  <div class="input-side"">
+    @elements.input
+    <span class="error">@elements.errors</span>
+  </div>
+</div>
