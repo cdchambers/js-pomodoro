@@ -2,3 +2,15 @@
   text-decoration: line-through;
   color: grey;
 }
+
+form.inline-form {
+  display: inline;
+}
+
+span.help-block { 
+  font-style: italic;
+}
+
+form > div { 
+  padding-bottom: .75em;
+}
