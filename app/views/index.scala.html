@@ -1,7 +1,8 @@
 @(tasks: List[Task], taskForm: Form[(String, Int)])
 
 @import helper._
-@import helper.twitterBootstrap._
+
+@implicitField = @{FieldConstructor(taskFieldConstructorTemplate.f)}
 
 @main("Todo List") {
 
@@ -24,19 +25,25 @@
 	      <input class="complete-task" type="submit" value="Done">
 	    }
 	  } else {
-	    <img src="assets/images/glyphicons_198_ok.png" alt="Done"/>
+	    <img src="@routes.Assets.at("/images/glyphicons_198_ok.png")" alt="Done"/>
 	  }
 	</td]>
       </tr>
     }
   </table>
 
-  <h2>Add a new task</h2>
+  <div id="timer">
+    <input type="button" name="clickMe" value="click me and wait" onclick="timer()"/>
+  </div>
 
-  @form(routes.Application.newTask) {
-    @inputText(taskForm("label"), '_label->"Label")    
-    @inputText(taskForm("estimate"), '_label->"Estimate in pomodoros")
-    <input type="submit" value="Create">
-  }
+  <div id="task-creation" class="top-spacer">
+    <h1>Add a new task</h1>
+    <p>Enter the name and estimate of your new task and click create</p>
+    @form(routes.Application.newTask) {
+      @inputText(taskForm("label"), '_label->"Label", 'help -> " Enter the name of your task")    
+      @inputText(taskForm("estimate"), '_label->"Estimate (in pomodoros)", 'help -> "Enter a whole number between 0 and 5")
+      <input type="submit" value="Create" class="top-spacer">
+    }
+  </div>
 
 }

@@ -4,6 +4,7 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import play.api.data.validation.Constraints._
 import models.Task
 
 object Application extends Controller {
@@ -11,7 +12,8 @@ object Application extends Controller {
   val taskForm = Form(
     tuple(
       "label" -> nonEmptyText,
-      "estimate" -> number(min=0, max=5)    
+      "estimate" -> (number verifying("The estimate needs to be between 0 and 5 pomodoros", 
+	n => n >= 0 && n <= 5))
     )
   )
 
