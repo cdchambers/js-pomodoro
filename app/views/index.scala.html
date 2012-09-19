@@ -33,7 +33,9 @@
   </table>
 
   <div id="timer">
-    <input type="button" name="clickMe" value="click me and wait" onclick="timer()"/>
+    <input type="button" id="startTimer" value="Start Timer" onclick="startTimer()"/>
+    <input type="button" id="resetTimer" value="Reset Timer" onclick="resetTimer()"/>
+    <label id="timeDisplay">25 minutes remaining<label/>
   </div>
 
   <div id="task-creation" class="top-spacer">

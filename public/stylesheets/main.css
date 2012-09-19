@@ -3,6 +3,31 @@ body {
   font-size: 12px;
 }
 
+tr { 
+  font-size: 14px;
+  font-weight: bold;
+  width: 400px;
+  height: 40px;
+  border: solid 2px;
+}
+
+.done-false:hover {
+  cursor: pointer;
+  color: #888;
+}
+
+span.done-false.selected{
+  background: #b7ddf2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  color: #888;
+}
+
+span.done-false.in-progress{
+  text: lightgrey;
+}
+
 .done-true {
   text-decoration: line-through;
   color: grey;
@@ -10,6 +35,12 @@ body {
 
 form.inline-form { 
   display: inline
+}
+
+div#timer {
+  font-size: 12px;
+  width: 300px;
+  padding: 14px;
 }
 
 .top-spacer { 
